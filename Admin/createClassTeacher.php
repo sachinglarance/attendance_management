@@ -225,14 +225,14 @@ if(isset($_POST['save'])){
                     </div>
                     <div class="form-group row mb-3">
                         <div class="col-xl-6">
-                        <label class="form-control-label">Select Class<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Select Year<span class="text-danger ml-2">*</span></label>
                          <?php
                         $qry= "SELECT * FROM tblclass ORDER BY className ASC";
                         $result = $conn->query($qry);
                         $num = $result->num_rows;		
                         if ($num > 0){
                           echo ' <select required name="classId" onchange="classArmDropdown(this.value)" class="form-control mb-3">';
-                          echo'<option value="">--Select Class--</option>';
+                          echo'<option value="">--Select Year--</option>';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['Id'].'" >'.$rows['className'].'</option>';
                               }
@@ -241,7 +241,7 @@ if(isset($_POST['save'])){
                             ?>  
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Select Department<span class="text-danger ml-2">*</span></label>
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -275,13 +275,13 @@ if(isset($_POST['save'])){
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>#</th>
+                        <th>S.No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email Address</th>
                         <th>Phone No</th>
-                        <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Year</th>
+                        <th>Department</th>
                         <th>Date Created</th>
                         <th>Delete</th>
                       </tr>

@@ -173,13 +173,13 @@ if(isset($_POST['save'])){
                   <table class="table align-items-center table-flush table-hover">
                     <thead class="thead-light">
                       <tr>
-                        <th>#</th>
+                        <th>S.No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Other Name</th>
-                        <th>Admission No</th>
-                        <th>Class</th>
-                        <th>Class Arm</th>
+                        <th>Email</th>
+                        <th>Roll No</th>
+                        <th>Year</th>
+                        <th>Department</th>
                         <th>Check</th>
                       </tr>
                     </thead>

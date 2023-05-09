@@ -12,7 +12,7 @@ include '../Includes/session.php';
 
     $rs = $conn->query($query);
     $num = $rs->num_rows;
-    $rrw = $rs->fetch_assoc();
+    $rrw = $rs->fetch_assoc();  
 
 
 ?>
@@ -26,7 +26,7 @@ include '../Includes/session.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/attnlg.png" rel="icon">
+  <link href="img/logo/Ece.png" rel="icon">
   <title>Dashboard</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -46,17 +46,18 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Administrator Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Administrator Dashboard (Today's Date : <?php echo $todaysDate = date("m-d-Y");?>)</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
+          <div class="text-xs font-weight-bold text-uppercase mb-1">IV - ECE</div>
 
           <div class="row mb-3">
           <!-- Students Card -->
           <?php 
-$query1=mysqli_query($conn,"SELECT * from tblstudents");                       
+$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = 5");                       
 $students = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -80,7 +81,7 @@ $students = mysqli_num_rows($query1);
             </div>
             <!-- Class Card -->
              <?php 
-$query1=mysqli_query($conn,"SELECT * from tblclass");                       
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 5 && dateTimeTaken = CURDATE()");                      
 $class = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -88,7 +89,7 @@ $class = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Classes</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Present</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $class;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
@@ -103,33 +104,8 @@ $class = mysqli_num_rows($query1);
               </div>
             </div>
             <!-- Class Arm Card -->
-             <?php 
-$query1=mysqli_query($conn,"SELECT * from tblclassarms");                       
-$classArms = mysqli_num_rows($query1);
-?>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Class Arms</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $classArms;?></div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span> -->
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-code-branch fa-2x text-success"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Std Att Card  -->
-            <?php 
-$query1=mysqli_query($conn,"SELECT * from tblattendance");                       
+<?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=0 && classId = 5 && dateTimeTaken = CURDATE()");                       
 $totAttendance = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -137,7 +113,7 @@ $totAttendance = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Student Attendance</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Absent</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
@@ -162,8 +138,8 @@ $totAttendance = mysqli_num_rows($query1);
                             <div class="card-body">
                               <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Class Teachers</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $classTeacher;?></div>
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Total Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($class/$students)*100;?>%</div>
                                   <div class="mt-2 mb-0 text-muted text-xs">
                                     <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
                                     <span>Since last years</span> -->
@@ -178,56 +154,8 @@ $totAttendance = mysqli_num_rows($query1);
                         </div>
           
 
-                         <!-- Session and Terms Card  -->
-            <?php 
-            $query1=mysqli_query($conn,"SELECT * from tblsessionterm");                       
-            $sessTerm = mysqli_num_rows($query1);
-            ?>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card h-100">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Session & Terms</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sessTerm;?></div>
-                                  <div class="mt-2 mb-0 text-muted text-xs">
-                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span> -->
-                                  </div>
-                                </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-calendar-alt fa-2x text-warning"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <!-- Terms Card  -->
-            <?php 
-            $query1=mysqli_query($conn,"SELECT * from tblterm");                       
-            $termonly = mysqli_num_rows($query1);
-            ?>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                          <div class="card h-100">
-                            <div class="card-body">
-                              <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Terms</div>
-                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $termonly;?></div>
-                                  <div class="mt-2 mb-0 text-muted text-xs">
-                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span>Since last years</span> -->
-                                  </div>
-                                </div>
-                                <div class="col-auto">
-                                  <i class="fas fa-th fa-2x text-info"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                   
+      
           <!--Row-->
 
           <!-- <div class="row">
@@ -238,7 +166,352 @@ $totAttendance = mysqli_num_rows($query1);
           </div> -->
 
         </div>
-        <!---Container Fluid-->
+       
+        <div class="text-xs font-weight-bold text-uppercase mb-1">III - ECE</div>
+        <div class="row mb-3">
+          <!-- Students Card -->
+          <?php 
+$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = 4");                       
+$students = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Students</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $students;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Card -->
+             <?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 4 && dateTimeTaken = CURDATE()");                       
+$class = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Present</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $class;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-chalkboard fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Arm Card -->
+<?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=0 && classId = 4 && dateTimeTaken = CURDATE()");                        
+$totAttendance = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Absent</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                        <span>Since yesterday</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-secondary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teachers Card  -->
+            <?php 
+            $query1=mysqli_query($conn,"SELECT * from tblclassteacher");                       
+            $classTeacher = mysqli_num_rows($query1);
+            ?>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Total Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($class/$students)*100;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+
+                   
+      
+          <!--Row-->
+
+          <!-- <div class="row">
+            <div class="col-lg-12 text-center">
+              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
+                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
+            </div>
+          </div> -->
+
+        </div>
+       
+
+
+        <div class="text-xs font-weight-bold text-uppercase mb-1">II - ECE</div>
+        <div class="row mb-3">
+          <!-- Students Card -->
+          <?php 
+$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = 3");                       
+$students = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Students</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $students;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Card -->
+             <?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 3 && dateTimeTaken = CURDATE()");                          
+$class = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Present</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $class;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-chalkboard fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Arm Card -->
+<?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=0 && classId = 3 && dateTimeTaken = CURDATE()");                           
+$totAttendance = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Absent</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                        <span>Since yesterday</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-secondary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teachers Card  -->
+            <?php 
+            $query1=mysqli_query($conn,"SELECT * from tblclassteacher");                       
+            $classTeacher = mysqli_num_rows($query1);
+            ?>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Total Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($class/$students)*100;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+
+                   
+      
+          <!--Row-->
+
+          <!-- <div class="row">
+            <div class="col-lg-12 text-center">
+              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
+                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
+            </div>
+          </div> -->
+
+        </div>
+       
+
+        <div class="text-xs font-weight-bold text-uppercase mb-1">I - ECE</div>
+        <div class="row mb-3">
+          <!-- Students Card -->
+          <?php 
+$query1=mysqli_query($conn,"SELECT * from tblstudents where classId = 1");                       
+$students = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Students</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $students;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Card -->
+             <?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 1 && dateTimeTaken = CURDATE()");                          
+$class = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Present</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $class;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-chalkboard fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Class Arm Card -->
+<?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where status=0 && classId = 1 && dateTimeTaken = CURDATE()");                       
+$totAttendance = mysqli_num_rows($query1);
+?>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Absent</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs">
+                        <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                        <span>Since yesterday</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-secondary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Teachers Card  -->
+            <?php 
+            $query1=mysqli_query($conn,"SELECT * from tblclassteacher");                       
+            $classTeacher = mysqli_num_rows($query1);
+            ?>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Total Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($class/$students)*100;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+
+                   
+      
+          <!--Row-->
+
+          <!-- <div class="row">
+            <div class="col-lg-12 text-center">
+              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
+                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
+            </div>
+          </div> -->
+
+        </div>
+       
       </div>
       <!-- Footer -->
       <?php include 'includes/footer.php';?>

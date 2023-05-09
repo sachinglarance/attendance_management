@@ -1,7 +1,7 @@
  <ul class="navbar-nav sidebar sidebar-light accordion " id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center bg-gradient-primary  justify-content-center" href="index.php">
         <div class="sidebar-brand-icon" >
-          <img src="img/logo/attnlg.png" style="width:100px">
+          <!-- <img src="img/logo/Ece.png" style="width:100px"> -->
         </div>
         <div class="sidebar-brand-text mx-3">ECE</div>
       </a>
@@ -13,18 +13,18 @@
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-        Class and Class Arms
+        Year and Department 
       </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fas fa-chalkboard"></i>
-          <span>Manage Classes</span>
+          <span>Manage Year</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Manage Classes</h6>
-            <a class="collapse-item" href="createClass.php">Create Class</a>
+            <h6 class="collapse-header">Manage Year</h6>
+            <a class="collapse-item" href="createClass.php">Create Year</a>
             <!-- <a class="collapse-item" href="#">Member List</a> -->
           </div>
         </div>
@@ -33,17 +33,17 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapusers"
           aria-expanded="true" aria-controls="collapseBootstrapusers">
           <i class="fas fa-code-branch"></i>
-          <span>Manage Class Arms</span>
+          <span>Manage Department</span>
         </a>
         <div id="collapseBootstrapusers" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Manage Class Arms</h6>
-            <a class="collapse-item" href="createClassArms.php">Create Class Arms</a>
+            <h6 class="collapse-header">Manage Department</h6>
+            <a class="collapse-item" href="createClassArms.php">Create Department</a>
             <!-- <a class="collapse-item" href="usersList.php">User List</a> -->
           </div>
         </div>
       </li>
-       <hr class="sidebar-divider">
+       <hr class="sidebar-divider">   
       <div class="sidebar-heading">
         Teachers
       </div>
@@ -99,19 +99,22 @@
 
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-       Session & Term
+       Academy & Semester
       </div>
       </li>
        <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapcon"
           aria-expanded="true" aria-controls="collapseBootstrapcon">
           <i class="fa fa-calendar-alt"></i>
-          <span>Manage Session & Term</span>
+          <span>Manage Academy & Semester</span>
         </a>
         <div id="collapseBootstrapcon" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Contribution</h6>
-            <a class="collapse-item" href="createSessionTerm.php">Create Session and Term</a>
+            <a class="collapse-item" href="createSessionTerm.php">
+              <pre>Create Academy and 
+Semester</pre>
+                  </a>
             <!-- <a class="collapse-item" href="addMemberToContLevel.php ">Add Member to Level</a> -->
           </div>
         </div>
