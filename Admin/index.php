@@ -46,7 +46,7 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Administrator Dashboard (Today's Date : <?php echo $todaysDate = date("m-d-Y");?>)</h1>
+            <h1 class="h3 mb-0 text-gray-800">Administrator Dashboard (Today's Date : <?php echo $todaysDate = date("d-m-Y");?>)</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>

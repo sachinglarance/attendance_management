@@ -97,6 +97,21 @@
         </div>
       </li>
 
+      </li>
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
+          aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="fas fa-user-graduate"></i>
+          <span>Students Percentage</span>
+        </a>
+        <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="studentPercentage.php">Students Percentage</a>
+            <!-- <a class="collapse-item" href="#">Assets Type</a> -->
+          </div>
+        </div>
+      </li>
+
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
        Academy & Semester
