@@ -46,7 +46,7 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Class Teacher Dashboard (<?php echo $rrw['className'].' - '.$rrw['classArmName'];?>)</h1>
+            <h1 class="h3 mb-0 text-gray-800">Class Teacher Dashboard (<?php echo $rrw['className'].' - '.$rrw['classArmName'];?>) (Today's Date : <?php echo $todaysDate = date("d-m-Y");?>)</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -129,7 +129,7 @@ $classArms = mysqli_num_rows($query1);
             
             <!-- Pending Requests Card Example -->
             <?php 
-$query1=mysqli_query($conn,"SELECT * from tblattendance where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]'");                       
+$query1=mysqli_query($conn,"SELECT * from tblattendance where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' && status=1 && dateTimeTaken = CURDATE()");                       
 $totAttendance = mysqli_num_rows($query1);
 ?>
             <div class="col-xl-3 col-md-6 mb-4">
@@ -137,7 +137,7 @@ $totAttendance = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Student Attendance</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Present</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
@@ -151,6 +151,31 @@ $totAttendance = mysqli_num_rows($query1);
                 </div>
               </div>
             </div>
+
+
+            <?php 
+$query1=mysqli_query($conn,"SELECT * from tblattendance where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' && status=0 && dateTimeTaken = CURDATE()");                       
+$totAttendance = mysqli_num_rows($query1);
+?>
+             <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Absent</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
+                      <div class="mt-2 mb-0 text-muted text-xs"> 
+                        <!-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                        <span>Since last month</span> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-chalkboard fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
           
           <!--Row-->
 
