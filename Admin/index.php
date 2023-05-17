@@ -128,11 +128,7 @@ $totAttendance = mysqli_num_rows($query1);
               </div>
             </div>
 
-            <!-- Teachers Card  -->
-            <?php 
-            $query1=mysqli_query($conn,"SELECT * from tblclassteacher");                       
-            $classTeacher = mysqli_num_rows($query1);
-            ?>
+        
                         <div class="col-xl-3 col-md-6 mb-4">
                           <div class="card h-100">
                             <div class="card-body">
@@ -152,6 +148,36 @@ $totAttendance = mysqli_num_rows($query1);
                             </div>
                           </div>
                         </div>
+
+
+                        <?php 
+           $query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 5");                         
+            $classTeacher = mysqli_num_rows($query1);
+            $query2=mysqli_query($conn,"SELECT MONTH(CURDATE()) ");                         
+            $classMonth = mysqli_num_rows($query2);
+            ?>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Month Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($classTeacher/$students)/$classMonth;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                          
           
 
                    
@@ -267,6 +293,33 @@ $totAttendance = mysqli_num_rows($query1);
                           </div>
                         </div>
           
+
+                        <?php 
+           $query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 4");                         
+            $classTeacher = mysqli_num_rows($query1);
+            $query2=mysqli_query($conn,"SELECT MONTH(CURDATE()) ");                         
+            $classMonth = mysqli_num_rows($query2);
+            ?>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Month Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($classTeacher/$students)/$classMonth;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
                    
       
@@ -384,6 +437,33 @@ $totAttendance = mysqli_num_rows($query1);
                         </div>
           
 
+
+                        <?php 
+           $query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 3");                         
+            $classTeacher = mysqli_num_rows($query1);
+            $query2=mysqli_query($conn,"SELECT MONTH(CURDATE()) ");                         
+            $classMonth = mysqli_num_rows($query2);
+            ?>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Month Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($classTeacher/$students)/$classMonth;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                    
       
           <!--Row-->
@@ -499,6 +579,32 @@ $totAttendance = mysqli_num_rows($query1);
                         </div>
           
 
+                        <?php 
+           $query1=mysqli_query($conn,"SELECT * from tblattendance where status=1 && classId = 1");                         
+            $classTeacher = mysqli_num_rows($query1);
+            $query2=mysqli_query($conn,"SELECT MONTH(CURDATE()) ");                         
+            $classMonth = mysqli_num_rows($query2);
+            ?>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                  <div class="text-xs font-weight-bold text-uppercase mb-1">Month Percentage</div>
+                                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo ($classTeacher/$students)/$classMonth;?>%</div>
+                                  <div class="mt-2 mb-0 text-muted text-xs">
+                                    <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    <span>Since last years</span> -->
+                                  </div>
+                                </div>
+                                <div class="col-auto">
+                                  <i class="fas fa-chalkboard-teacher fa-2x text-danger"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                    
       
           <!--Row-->
