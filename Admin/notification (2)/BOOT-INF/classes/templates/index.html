@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>email-notification...</title>
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.jpg" th:src="@{/images/favicon.jpg}">
+    <link href="webjars/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" type="text/css">
+    <script src="table.js"></script>
+</head>
+<body class="text-dark">
+<center>
+    <br>
+    <br>
+    <h1>
+        <u>.... EMAIL NOTIFICATION HISTORY ....</u>
+    </h1>
+    <br>
+    <br>
+    <br>
+    <br>
+</center>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class=" text-center bg-dark text-white p-3" style="border-radius:8px">
+                <h4><code class="text-white">... FILL THE FORM & SEND THE EMAIL FOR INDIVIDUAL ...</code></h4>
+            </div>
+            <br>
+            <br>
+            <form action="#" th:action="@{/send-notification/create/}" method="post" th:object="${request}">
+
+                <label>Email address</label>
+                <input type="email" class="form-control" id="to" aria-describedby="emailHelp"
+                       field="*{to}"
+                       placeholder="Enter email"
+                       name="to"
+                       required/>
+                <br>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+
+                <br>
+                <br>
+                <center>
+                    <input type="submit" class="btn" style="width : 50% ; background:#07e87f;opacity:0.8"
+                           value="CLICK HERE"/>
+                </center>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <br>
+            <br>
+            <br><br><br>
+            <center>
+                <img src="../static/images/img.jpg" th:src="@{/images/img.jpg}" class="text-center" width="400"
+                     height="275" alt="Fill it & Get it"/>
+            </center>
+        </div>
+    </div>
+
+
+    <br>
+
+    <div>
+
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<h5 style="font-family:monospace" class="text-center"> ... Email Notification Center ... </h5>
+
+<br>
+<br>
+
+<div th:if="${ not#lists.isEmpty(values)}" class="text-center">
+
+    <table style="border: 1px solid;" class=" table table-hover p-2">
+        <thead class="thead-dark">
+        <tr style="border: 1px solid;">
+            <th>From</th>
+            <th>To</th>
+            <th>cc</th>
+            <th>RemainderContent</th>
+            <th>CreatedDate</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="value : ${values}">
+            <td th:text="${value.from}"></td>
+            <td th:text="${value.to}"></td>
+            <td th:text="${value.cc}"></td>
+            <td th:text="${value.remainderContent}"></td>
+            <td th:text="${value.createdDate}"></td>
+            <td th:text="${value.status}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

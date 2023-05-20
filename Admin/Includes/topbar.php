@@ -15,12 +15,10 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <button class="btn btn-link rounded-circle mr-3">
-            Notify
-          </button>
               </a>
             </li>
-         
+            <button class="btn btn-link rounded-circle mr-3"> <a href= "http://localhost:8087/email-notification/v1/" target ="0">Notify</a></button>
+
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
